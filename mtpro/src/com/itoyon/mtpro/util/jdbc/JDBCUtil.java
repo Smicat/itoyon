@@ -3,7 +3,9 @@
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
+import com.itoyon.mtpro.util.properties.PropertiesUtil;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
@@ -14,24 +16,30 @@ import com.mysql.jdbc.Statement;
  * @date: 2018年5月20日 下午10:19:29
  */
 public class JDBCUtil {
-	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private static final String JDBC_URL = "jdbc:mysql://101.37.161.79:3306/testdb";
-	private static final String JDBC_USER = "itest";
-	private static final String JDBC_PASSWORD = "_P@ss1234";
+	String jdbcDriver;
+	String jdbcURL;
+	String jdbcUser;
+	String jdbcPasswd;
+	Connection conn;
+	Statement stmt = null;
+	ResultSet rs = null;
 
-	private Connection conn;
-	private Statement stmt = null;
-	private ResultSet rs = null;
+	public JDBCUtil() {
+		jdbcDriver = PropertiesUtil.getProperty("JDBC_DRIVER");
+		jdbcURL = PropertiesUtil.getProperty("JDBC_URL");
+		jdbcUser = PropertiesUtil.getProperty("JDBC_USER");
+		jdbcPasswd = PropertiesUtil.getProperty("JDBC_PASSWORD");
+	}
 
 	/**
 	 * 
 	 * @Title: doConnet @Description: 创建数据库连接 @param @return @param @throws
-	 * ClassNotFoundException @param @throws SQLException 设定文件 @return
-	 * Connection 返回类型 @throws
+	 *         ClassNotFoundException @param @throws SQLException 设定文件 @return
+	 *         Connection 返回类型 @throws
 	 */
 	public Connection doConnet() throws ClassNotFoundException, SQLException {
-		Class.forName(JDBC_DRIVER);
-		conn = (Connection) DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+		Class.forName(jdbcDriver);
+		conn = (Connection) DriverManager.getConnection(jdbcURL, jdbcUser, jdbcPasswd);
 
 		return conn;
 	}
@@ -39,7 +47,7 @@ public class JDBCUtil {
 	/**
 	 * 
 	 * @Title: doQuery @Description: 查询 @param @param sql @param @return
-	 * 设定文件 @return ResultSet 返回类型 @throws
+	 *         设定文件 @return ResultSet 返回类型 @throws
 	 */
 	public ResultSet doQuery(String sql) {
 		try {
@@ -72,7 +80,7 @@ public class JDBCUtil {
 	/**
 	 * 
 	 * @Title: doSaveOrUpdate @Description: 插入、修改或修改 @param @param
-	 * sql @param @return 设定文件 @return int 返回类型 @throws
+	 *         sql @param @return 设定文件 @return int 返回类型 @throws
 	 */
 	public int doSaveOrUpdate(String sql) {
 		int num = 0;
@@ -108,7 +116,7 @@ public class JDBCUtil {
 	/**
 	 * 
 	 * @Title: doCount @Description: 统计记录数 @param @param sql @param @return
-	 * 设定文件 @return int 返回类型 @throws
+	 *         设定文件 @return int 返回类型 @throws
 	 */
 	public int doCount(String sql) {
 		int num = 0;
@@ -170,11 +178,12 @@ public class JDBCUtil {
 		Connection connection = jdbcUtil.doConnet();
 
 		if (!connection.isClosed()) {
-			ResultSet rs = jdbcUtil.doQuery("select count(*) as cnt from t_init_diag;");
-			int cnt = 0;
+			ResultSet rs = jdbcUtil.doQuery("select now() as currTime;");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String currTime;
 			while (rs.next()) {
-				cnt = rs.getInt("cnt");
-				System.out.println("t_init_diag表的记录总数为：" + cnt + "条");
+				currTime = sdf.format(rs.getTimestamp("currTime"));
+				System.out.println("数据库当前时间为：\n" + currTime);
 			}
 			jdbcUtil.doClose();
 		}
