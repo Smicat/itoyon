@@ -1,4 +1,4 @@
-package com.itooy.project3;
+package com.itoyon.mtpro.test.project3;
 
 import java.util.Arrays;
 import java.util.InputMismatchException;

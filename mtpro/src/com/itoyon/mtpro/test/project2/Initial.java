@@ -1,4 +1,4 @@
-package com.itooy.project2;
+package com.itoyon.mtpro.test.project2;
 
 /**
  * @Description: TODO(用一句话描述这个类的作用)

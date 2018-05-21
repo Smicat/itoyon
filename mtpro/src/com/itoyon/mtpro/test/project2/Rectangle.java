@@ -1,4 +1,4 @@
-package com.itooy.project2;
+package com.itoyon.mtpro.test.project2;
 
 /**
  * @Description: 求矩形的周长和面积

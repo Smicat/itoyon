@@ -1,4 +1,4 @@
-package com.itooy.project5.game;
+package com.itoyon.mtpro.test.project5.game;
 
 /**
  * @Description: 扑克牌花色

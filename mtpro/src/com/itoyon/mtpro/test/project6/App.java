@@ -1,4 +1,4 @@
-package com.itooy.project6;
+package com.itoyon.mtpro.test.project6;
 
 import java.util.Arrays;
 

@@ -41,7 +41,7 @@ public class DownNetFileUtil2 {
 		String currDate = sdf.format(new Date());
 
 		try {
-			conn = JDBCUtil.getConn();
+			conn = new JDBCUtil().doConnet();
 			statement = conn.createStatement();
 			sb = new StringBuffer();
 			sb.append("SELECT \n");
