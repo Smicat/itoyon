@@ -1,30 +1,22 @@
-package com.itoyon.mtpro.test.poker;
+package com.itoyon.mtpro.test.project5.poker;
 
 /**
- * @Description: 扑克牌点数
+ * @Description: TODO(用一句话描述这个类的作用)
  * @author: Stone
  * @date: 2018年5月13日 上午9:05:13
  */
-public class Point {
+public class Card {
 	Integer id;
 	String name;
-
-	public Point() {
-	}
-
-	public Point(Integer id, String name) {
-		this.id = id;
-		this.name = name;
-	}
 
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Point))
+		if (!(obj instanceof Card))
 			return false;
-		Point other = (Point) obj;
+		Card other = (Card) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

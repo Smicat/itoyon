@@ -1,18 +1,18 @@
-package com.itoyon.mtpro.test.poker;
+package com.itoyon.mtpro.test.project5.poker;
 
 /**
- * @Description: 扑克牌花色
+ * @Description: 扑克牌点数
  * @author: Stone
  * @date: 2018年5月13日 上午9:05:13
  */
-public class Face {
+public class Point {
 	Integer id;
 	String name;
 
-	public Face() {
+	public Point() {
 	}
 
-	public Face(Integer id, String name) {
+	public Point(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -22,9 +22,9 @@ public class Face {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Face))
+		if (!(obj instanceof Point))
 			return false;
-		Face other = (Face) obj;
+		Point other = (Point) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

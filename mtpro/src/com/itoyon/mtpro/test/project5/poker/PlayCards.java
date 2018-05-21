@@ -1,4 +1,4 @@
-package com.itoyon.mtpro.test.poker;
+package com.itoyon.mtpro.test.project5.poker;
 
 import java.util.ArrayList;
 import java.util.Collections;
